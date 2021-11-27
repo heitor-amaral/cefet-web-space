@@ -54,3 +54,33 @@ const imagens = [
     }
   ];
 
+let imagemAtual = 0
+
+const imagemSlide = document.querySelector('#slide');
+const botaoVoltar = document.querySelector('#anterior')
+const botaoAvancar = document.querySelector('#proximo')
+
+botaoVoltar.addEventListener('click', () => {
+  if(imagemAtual > 0) {
+    imagemAtual -= 1;
+    trocaImagem()
+  } else {
+    imagemAtual = imagens.length - 1
+    trocaImagem()
+  }
+})
+
+botaoAvancar.addEventListener('click', () => {
+  if(imagemAtual < imagens.length -1) {
+    imagemAtual +=1;
+    trocaImagem()
+  } else {
+    imagemAtual = 0
+    trocaImagem()
+  }
+})
+
+function trocaImagem() {
+  imagemSlide.src = `${servidorDasImagens}/${imagens[imagemAtual].arquivo}`
+  imagemSlide.alt = imagens[imagemAtual].descricao
+}
